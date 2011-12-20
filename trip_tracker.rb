@@ -11,9 +11,10 @@ require_relative 'config/config'
 Dir.glob("app/**/*.rb").each { |r| require_relative r }
 
 class TripTracker
-
+  
   get '/' do
-    File.read(File.join('public', 'index.html'))
+    # File.read(File.join('public', 'index.html'))
+    erb :index, :format=>:html5
   end
   
   get '/app' do
