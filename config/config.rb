@@ -21,7 +21,7 @@ class TripTracker
        # The second parameter defines where the compressed version will be served.
        # (Note: that parameter is optional, AssetPack will figure it out.)
        js :app, '/js/app.js', [
-         '/js/lib/**/*.js',
+         '/js/lib/*.js',
          '/js/app/test.js',
          '/js/app/app.js'
        ]
