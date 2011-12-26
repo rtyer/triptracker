@@ -1,3 +1,5 @@
 *.sqlite
 doc
 triptracker.sublime-project
+triptracker.sublime-workspace
+
