@@ -12,14 +12,12 @@ module TestHelper
   def app() TripTracker end
     
   def setup
-    puts "setup"
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.start
   end
   
   def teardown 
-    puts "teardown"
     DatabaseCleaner.clean
   end
 end

@@ -1,1 +1,5 @@
-TBD
+play around in the browser
+
+t = new app.Trip({start_location:[1,2], end_location:[3,4], points: [new app.Point({location:[1,2], time:new Date()})]})
+app.Trips.add(t)
+t.save({},{error: function(model, response){alert("response:" + JSON.stringify(response));}})

@@ -23,7 +23,10 @@ class Static < Sinatra::Base
 		# The second parameter defines where the compressed version will be served.
 		# (Note: that parameter is optional, AssetPack will figure it out.)
 		js :app, '/js/app.js', [
-		 '/js/lib/*.js',
+		 '/js/lib/zepto.js',
+		 '/js/lib/underscore.js',
+		 '/js/lib/backbone.js',
+		 '/js/lib/modernizr-latest.js',
 		 '/js/app/utils.js',
 		 '/js/app/models.js',
 		 '/js/app/collections.js',
