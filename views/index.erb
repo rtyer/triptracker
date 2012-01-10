@@ -1,12 +1,43 @@
 <!doctype html>
 
-<html>
-	<head>
-		<%= css :application, :media => 'screen' %>
-		<%= js  :app %>
-	</head>
-	<body>
-		<button onclick="window.watchId = startWatch()">Start</button>
-		<button onclick="stopWatch(window.watchId)">Stop</button>
-	</body>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Trip Tracker</title>
+	<meta name="description" content="">
+	<meta name="author" content="Ryan Tyer">
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<%= css :application, :media => 'screen' %>
+	<%= js  :app %>
+</head>
+<body>
+	<div class="container">
+
+      <div class="content">
+        <div class="page-header">
+          <h1>Trip Tracker</h1>
+        </div>
+        <div class="row">
+          <div class="span10">
+            <h2>Main content</h2>
+          </div>
+          <div class="span4">
+            <h3>Secondary content</h3>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p><small>&copy; Ryan Tyer 2012 | <a href="/spec" style="color:gray">Run Spec</a></small></p>
+      </footer>
+
+    </div> <!-- /container -->
+</body>
 </html>

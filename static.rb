@@ -35,8 +35,19 @@ class Static < Sinatra::Base
 		 '/js/tracker.js'
 		]
 
+		js :test, 'js/test.js', [
+			'/js/test/jasmine.js',
+			'/js/test/jasmine-html.js',
+			'/js/test/tracker_spec.js'
+		]
+
 		css :application, '/css/application.css', [
-		 '/css/screen.css'
+		 '/css/bootstrap.css',
+		 '/css/test.css'
+		]
+
+		css :test, '/css/test.css', [
+			'/css/jasmine.css'
 		]
 
 		js_compression  :jsmin         # Optional
@@ -52,9 +63,12 @@ class Static < Sinatra::Base
 		also_reload "/css/**/*.css"
     end
 
-
     #view paths
 	get '/' do
 		erb :index, :format=>:html5
+	end
+
+	get '/spec' do
+		erb :spec_runner, :format=>:html5
 	end
 end

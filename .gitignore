@@ -4,3 +4,4 @@ triptracker.sublime-project
 triptracker.sublime-workspace
 mongo.err
 mongo.out
+.DS_Store

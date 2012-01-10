@@ -8,7 +8,7 @@ Util =
 			console.log(message)
 			errorCallback(message)
 	logPosition: (position) ->
-		console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude)	
+		console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude)
 
 @app = window.app || {}
-@app.Util = Util			
+@app.Util = Util
