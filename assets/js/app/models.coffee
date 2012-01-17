@@ -1,19 +1,18 @@
 #models
 
 class Trip extends Backbone.Model	
-	tickFrequency: 500	
-	initialize: () ->
-		_.bindAll(this, 'tick')
-	defaults: {
-		"duration":	0,
-		"started":	false	
-	}	
+	tickFrequency: 	500		
+	defaults: 
+		duration:	0,
+		started:	false	
+	initialize: ->
+		# _.bindAll(this, 'tick') - replaced with fat arrow
 	isStarted:() ->
 		@get "started"
-	tick:()->
-		@set "duration":((@get "duration") + @tickFrequency)
+	tick:()=>
+		@set duration:((@get "duration") + @tickFrequency)
 	start:() ->
-		@set "started":true
+		@set started:true
 		@intervalId = setInterval @tick, @tickFrequency
 	stop:()->
 		clearInterval(@intervalId)		

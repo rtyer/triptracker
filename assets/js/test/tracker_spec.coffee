@@ -1,13 +1,10 @@
 app = window.app ? {}
 
-describe "Util", ->
-	it "should be sane", ->
-		expect(true).toBeTruthy()
-
 describe "Trip", ->
 	beforeEach ->
 		@trip = new app.Trip	
 		jasmine.Clock.useMock()
+
 	describe "starting the trip",->
 		it "should report started status correctly", ->
 			expect(@trip.isStarted()).toBeFalsy()
@@ -23,3 +20,22 @@ describe "Trip", ->
 			jasmine.Clock.tick(@trip.tickFrequency)
 			expect(@trip.get('duration')).toEqual(@trip.tickFrequency)
 			@trip.stop()
+
+	describe "stopping the trip", ->
+		it "should stop the duration increasing", ->
+			@trip.start()
+			
+			jasmine.Clock.tick(@trip.tickFrequency)
+			timeOne = @trip.get('duration')
+
+			@trip.stop()
+
+			jasmine.Clock.tick(@trip.tickFrequency)
+			
+			expect(timeOne).toEqual(@trip.tickFrequency)			
+			expect(timeOne).toEqual(@trip.get('duration'))
+		it "should spy like a mfer", ->
+			spyOn(app.Util, 'currentLocation').andCallFake (success, failure) ->
+				console.log('here')
+			app.Util.currentLocation(app.Util.logPosition, app.Util.logPosition)
+	

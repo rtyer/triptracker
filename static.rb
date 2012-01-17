@@ -35,17 +35,17 @@ class Static < Sinatra::Base
 		 '/js/tracker.js'
 		]
 
-		js :test, 'js/test.js', [
-			'/js/test/jasmine.js',
-			'/js/test/jasmine-html.js',
-			'/js/test/tracker_spec.js'
-		]
-
 		css :application, '/css/application.css', [
 		 '/css/bootstrap.css',
 		 '/css/test.css'
 		]
 
+		js :test, 'js/test.js', [
+			'/js/test/jasmine.js',
+			'/js/test/jasmine-html.js',
+			'/js/test/tracker_spec.js'
+		]
+		
 		css :test, '/css/test.css', [
 			'/css/jasmine.css'
 		]
