@@ -50,7 +50,7 @@ class Static < Sinatra::Base
 			'/css/jasmine.css'
 		]
 
-		js_compression  :jsmin         # Optional
+		#js_compression  :jsmin         # Optional
 		css_compression :simple        
 		# # Optional
 	}
