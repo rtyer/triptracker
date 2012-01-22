@@ -6,7 +6,3 @@ $(document).ready ->
 		start:() ->
 			@app.router = new app.TripTrackerRouter
 			#setup an event aggregator 
-
-
-
-

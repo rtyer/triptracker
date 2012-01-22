@@ -31,6 +31,3 @@ $(document).ready ->
 		render: ->			
 	    	$(@el).html app.Template.route(@model.toJSON())
 	    	@
-
-	
-	

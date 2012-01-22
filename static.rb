@@ -50,9 +50,9 @@ class Static < Sinatra::Base
 			'/css/jasmine.css'
 		]
 
-		js_compression  :closure, :level => "SIMPLE_OPTIMIZATIONS"         # Optional
+		js_compression  :closure, :level => "SIMPLE_OPTIMIZATIONS"
 		css_compression :simple        
-		# # Optional
+	
 	}
    
     #Reloader setup
