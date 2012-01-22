@@ -1,8 +1,9 @@
 source "http://rubygems.org"
 
 gem 'rake'
-gem "mongoid", "~> 2.3.4"
+gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5.2"
+gem 'mongoid_spacial'
 gem 'sinatra'
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :git => 'https://github.com/rstacruz/sinatra-assetpack.git'
 gem 'coffee-script'

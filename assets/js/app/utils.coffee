@@ -7,6 +7,7 @@ Util =
 			message = "browser does not support geolocation"
 			console.log(message)
 			errorCallback(message)
+	
 	logPosition: (position) ->
 		console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude)
 
