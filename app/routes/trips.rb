@@ -1,5 +1,3 @@
-require 'JSON'
-
 class TripTracker
 	get "/trips" do
 		Trip.all.to_json
