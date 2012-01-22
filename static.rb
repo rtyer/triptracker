@@ -40,7 +40,10 @@ class Static < Sinatra::Base
 		 '/css/test.css'
 		]
 
-		
+		css :test, '/css/test.css', [
+			'/css/jasmine.css'
+		]
+
 		js_compression  :closure, :level => "SIMPLE_OPTIMIZATIONS"
 		css_compression :simple        
 	
