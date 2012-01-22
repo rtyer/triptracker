@@ -40,19 +40,11 @@ class Static < Sinatra::Base
 		 '/css/test.css'
 		]
 
-		js :test, 'js/test.js', [
-			'/js/test/jasmine.js',
-			'/js/test/jasmine-html.js',
-			'/js/test/tracker_spec.js'
-		]
 		
-		css :test, '/css/test.css', [
-			'/css/jasmine.css'
-		]
-
 		js_compression  :closure, :level => "SIMPLE_OPTIMIZATIONS"
 		css_compression :simple        
 	
+		prebuild :true
 	}
    
     #Reloader setup
