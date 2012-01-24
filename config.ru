@@ -5,6 +5,8 @@ require 'bundler/setup'
 require File.dirname(__FILE__) + '/trip_tracker'
 require File.dirname(__FILE__) + '/static'
 
+$stdout.sync = true
+
 #Runs the main sinatra app under '/' path
 map "/api" do
   run TripTracker

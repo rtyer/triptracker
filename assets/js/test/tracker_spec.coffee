@@ -1,5 +1,12 @@
 app = window.app ? {}
 
+class FakeLongLat
+	latitude: 1
+	longitude: 2
+
+class FakePosition 
+	coords: new FakeLongLat()
+
 describe "Trip", ->
 	beforeEach ->
 		@trip = new app.Trip	
@@ -21,6 +28,21 @@ describe "Trip", ->
 			expect(@trip.get('duration')).toEqual(@trip.tickFrequency)
 			@trip.stop()
 
+		it "should have no points before starting", ->
+			expect(@trip.get('points')).not.toBeNull
+			expect(@trip.get('points').size()).toEqual(0)
+		
+		it "should have a non zero points after starting", ->	
+			spyOn(app.Util, 'watchPosition').andCallFake (success, failure) ->
+				success(new FakePosition())
+				success(new FakePosition())
+				return 1
+			spyOn(app.Util, 'clearWatch').andCallFake (watchId) ->
+				return
+
+			@trip.start()
+			expect(@trip.get('points').size()).toEqual(2)
+
 	describe "stopping the trip", ->
 		it "should stop the duration increasing", ->
 			@trip.start()
@@ -34,7 +56,8 @@ describe "Trip", ->
 			
 			expect(timeOne).toEqual(@trip.tickFrequency)			
 			expect(timeOne).toEqual(@trip.get('duration'))
-		it "should spy like a mfer", ->
+	describe "", ->
+		it "should", ->
 			spyOn(app.Util, 'currentLocation').andCallFake (success, failure) ->
 				console.log('here')
 			app.Util.currentLocation(app.Util.logPosition, app.Util.logPosition)
