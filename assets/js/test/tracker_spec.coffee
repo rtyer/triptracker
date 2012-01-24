@@ -42,7 +42,6 @@ describe "Trip", ->
 
 			@trip.start()
 			expect(@trip.get('points').size()).toEqual(2)
-			expect(@trip.get('start_location')).toEqual([3.45,4.56])
 			@trip.stop()			
 
 	describe "stopping the trip", ->
