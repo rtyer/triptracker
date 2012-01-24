@@ -17,15 +17,20 @@ class Trip extends Backbone.Model
 	tick:()=>
 		@set duration:((@get "duration") + @tickFrequency)
 	addPoint:(position) =>
-		app.Util.logPosition(position)
-		(@get 'points').add(new Point({
-			location: [position.coords.longitude, position.coords.latitude],
+		points = (@get 'points')
+		location = [position.coords.longitude, position.coords.latitude]		
+		points.add(new Point({
+			location:location ,
 			time:	  new Date()
 		}))
+		console.log('size:' + points.size())
+		if(points.size() == 1)
+			console.log('setting start_location: ' + location)
+			@set 'start_location':location
 	start:() ->
 		@set started:true
 		@intervalId = setInterval @tick, @tickFrequency
-		@watchId = app.Util.watchPosition(@addPoint, app.Util.logWarning)
+		@watchId = app.Util.watchPosition(@addPoint, app.Util.logWarning)		
 	stop:()->
 		clearInterval(@intervalId)	
 		app.Util.clearWatch(@watchId)	

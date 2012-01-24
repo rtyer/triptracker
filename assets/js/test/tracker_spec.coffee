@@ -1,18 +1,18 @@
 app = window.app ? {}
 
 class FakeLongLat
-	latitude: 1
-	longitude: 2
+	constructor:(@longitude, @latitude) ->
 
 class FakePosition 
-	coords: new FakeLongLat()
+	constructor:(lng, lat) ->
+		@coords = new FakeLongLat(lng, lat)	
 
 describe "Trip", ->
 	beforeEach ->
 		@trip = new app.Trip	
 		jasmine.Clock.useMock()
 
-	describe "starting the trip",->
+	describe "starting the trip",->		
 		it "should report started status correctly", ->
 			expect(@trip.isStarted()).toBeFalsy()
 			@trip.start()
@@ -30,18 +30,20 @@ describe "Trip", ->
 
 		it "should have no points before starting", ->
 			expect(@trip.get('points')).not.toBeNull
-			expect(@trip.get('points').size()).toEqual(0)
+			expect(@trip.get('points').size()).toEqual(0)		
 		
-		it "should have a non zero points after starting", ->	
+		it "should have points set after starting", ->	
 			spyOn(app.Util, 'watchPosition').andCallFake (success, failure) ->
-				success(new FakePosition())
-				success(new FakePosition())
+				success(new FakePosition(3.45, 4.56))
+				success(new FakePosition(3.46, 4.57))
 				return 1
 			spyOn(app.Util, 'clearWatch').andCallFake (watchId) ->
 				return
 
 			@trip.start()
 			expect(@trip.get('points').size()).toEqual(2)
+			expect(@trip.get('start_location')).toEqual([3.45,4.56])
+			@trip.stop()			
 
 	describe "stopping the trip", ->
 		it "should stop the duration increasing", ->
@@ -56,9 +58,3 @@ describe "Trip", ->
 			
 			expect(timeOne).toEqual(@trip.tickFrequency)			
 			expect(timeOne).toEqual(@trip.get('duration'))
-	describe "", ->
-		it "should", ->
-			spyOn(app.Util, 'currentLocation').andCallFake (success, failure) ->
-				console.log('here')
-			app.Util.currentLocation(app.Util.logPosition, app.Util.logPosition)
-	
