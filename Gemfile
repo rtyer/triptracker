@@ -12,7 +12,7 @@ gem 'less'
 group :development, :test do
   gem 'rack-test'
   gem "database_cleaner"
-  gem "factory_girl"
+  gem "factory_girl", "~> 2.1.0"  
   gem "capybara"
   gem 'sinatra-reloader'
   gem 'i18n'

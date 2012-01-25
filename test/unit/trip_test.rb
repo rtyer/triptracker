@@ -22,20 +22,16 @@ describe Trip do
 	end
 
 	describe "start_location" do
-		it "should match the last point in the points array" do
-			t = Factory.build(:trip)
-			loc = t.start_location 
-			refute_nil(loc)
-			assert_equal(loc, t.points.first.location)			
+		it "must not be nil" do
+			t = Factory.build(:trip, :start_location => nil)
+			refute t.save
 		end
 	end
 
 	describe "end_location" do
 		it "must not be nil" do
-			t = Factory.build(:trip)
-			loc = t.end_location
-			refute_nil(loc)
-			assert_equal(loc, t.points.last.location)
+			t = Factory.build(:trip, :end_location => nil)
+			refute t.save
 		end
 	end
 

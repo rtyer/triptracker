@@ -1,4 +1,3 @@
-require 'JSON'
 require 'rack/test'
 require_relative '../test_helper'
 
@@ -33,7 +32,10 @@ describe "trip resource tests" do
 	end
 
 	it "can save a new trip" do
-		trip = Factory(:trip)
+		puts "++++++++"
+		trip = FactoryGirl.build(:trip_from_web) #simulates the values we'd get from the web app
+		puts "Trip: #{trip}"
+		puts "Trip JSON: #{ActiveSupport::JSON.encode(trip)}"
 		post '/trips', trip.to_json
 
 		assert_equal 201, last_response.status
@@ -45,5 +47,6 @@ describe "trip resource tests" do
    		for i in 0...trip.points.size	   	
    			assert_equal jsonTrip['points'][i]['location'], trip.points[i].location
    		end
+   		puts "--------"
 	end
 end
