@@ -64,4 +64,4 @@ describe "Trip", ->
 
 			@trip.stop()
 
-			expect(@trip.isStarted).toBeFalsy()
+			expect(@trip.isStarted()).toBeFalsy()
