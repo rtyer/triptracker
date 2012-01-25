@@ -18,7 +18,7 @@ class Trip extends Backbone.Model
 		@set duration:((@get "duration") + @tickFrequency)
 	addPoint:(position) =>		
 		(@get 'points').add(new Point({
-			location:location ,
+			location:[position.coords.longitude,position.coords.latitude],
 			time:	  new Date()
 		}))
 	start:() ->
@@ -26,6 +26,7 @@ class Trip extends Backbone.Model
 		@intervalId = setInterval @tick, @tickFrequency
 		@watchId = app.Util.watchPosition(@addPoint, app.Util.logWarning)		
 	stop:()->
+		@set started:false
 		clearInterval(@intervalId)	
 		app.Util.clearWatch(@watchId)	
 

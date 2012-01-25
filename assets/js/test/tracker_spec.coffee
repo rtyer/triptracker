@@ -41,7 +41,9 @@ describe "Trip", ->
 				return
 
 			@trip.start()
-			expect(@trip.get('points').size()).toEqual(2)
+			points = @trip.get('points')
+			expect(points.size()).toEqual(2)
+			expect(points.at(0).get('location')).toEqual([3.45, 4.56])
 			@trip.stop()			
 
 	describe "stopping the trip", ->
@@ -57,3 +59,9 @@ describe "Trip", ->
 			
 			expect(timeOne).toEqual(@trip.tickFrequency)			
 			expect(timeOne).toEqual(@trip.get('duration'))
+		it "should flip the started flag to false", ->
+			@trip.start()
+
+			@trip.stop()
+
+			expect(@trip.isStarted).toBeFalsy()
