@@ -18,5 +18,4 @@ class Trip
 	def to_s
 		"Trip { \n\tstart_location : #{start_location}\n\tend_location : #{end_location} \n\tduration : #{duration}\n\tpoints : #{points.join("\n\t\t ")}\n}"
 	end
-
 end
