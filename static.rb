@@ -37,6 +37,7 @@ class Static < Sinatra::Base
 
 		css :application, '/css/application.css', [
 		 '/css/bootstrap.css',
+		 '/css/bootstrap-responsive.css',
 		 '/css/test.css'
 		]
 

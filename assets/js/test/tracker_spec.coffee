@@ -25,7 +25,7 @@ describe "Trip", ->
 		it "should have a non zero duration after starting", ->			
 			@trip.start()									
 			jasmine.Clock.tick(@trip.tickFrequency)
-			expect(@trip.get('duration')).toEqual(@trip.tickFrequency)
+			expect(@trip.get('duration')).toEqual(@trip.tickFrequency/1000)
 			@trip.stop()
 
 		it "should have no points before starting", ->
@@ -57,8 +57,9 @@ describe "Trip", ->
 
 			jasmine.Clock.tick(@trip.tickFrequency)
 			
-			expect(timeOne).toEqual(@trip.tickFrequency)			
+			expect(timeOne).toEqual(@trip.tickFrequency/1000)			
 			expect(timeOne).toEqual(@trip.get('duration'))
+			
 		it "should flip the started flag to false", ->
 			@trip.start()
 
