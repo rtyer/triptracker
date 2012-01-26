@@ -10,12 +10,10 @@ class Trip extends Backbone.Model
 		duration:	0,
 		started:	false,
 		points:		new Points()
-	initialize: ->
-		# _.bindAll(this, 'tick') - replaced with fat arrow
 	isStarted:() ->
 		@get "started"
 	tick:()=>
-		@set duration:((@get "duration") + @tickFrequency)
+		@set duration:((@get "duration") + (@tickFrequency/1000))
 	addPoint:(position) =>		
 		(@get 'points').add(new Point({
 			location:[position.coords.longitude,position.coords.latitude],
