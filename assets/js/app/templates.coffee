@@ -6,6 +6,7 @@ class Template
 			long: <%=lng%>
 		</div>
 			'''
+	
 
 @app = window.app ? {}
 @app.Template = Template
