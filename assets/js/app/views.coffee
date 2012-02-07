@@ -20,14 +20,40 @@ $(document).ready ->
 
     @app.AppView = AppView
 
-  class StopWatchView extends Backbone.View
-    class: 'stopwatch'
+  class ClockView extends Backbone.View
+    class: 'clock'
+    tagName: 'h3'    
+    initialize: ->
+      @model.on 'change:duration', @render, @
     render: ->
-      $(@el).html app.Template.stopWatch(@model.toJSON())
+      $(@el).html app.Template.clock(@model.toJSON())
       @
-    
-	class RouteView extends Backbone.View
-		className: 'route'
+  @app.ClockView = ClockView
+
+  class TripActions extends Backbone.View
+    class: "actions"
+    tagName: "div"    
+    initialize: ->
+      @model.on 'change:started', @render, @
+    events:
+      'click .startBtn': 'startTrip'
+      'click .stopBtn': 'stopTrip'
+    render: ->
+      if(@model.isStarted())
+        $(@el).html app.Template.tripActionsStop()
+        @
+      else
+        $(@el).html app.Template.tripActionsStart()      
+        @
+    startTrip: () ->
+      @model.start()
+    stopTrip: () ->
+      @model.stop()    
+  
+  @app.TripActions = TripActions
+ 
+	class TripView extends Backbone.View
+		className: 'trip'
 		render: ->			
 	    	$(@el).html app.Template.route(@model.toJSON())
 	    	@

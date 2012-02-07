@@ -10,34 +10,36 @@
 	<meta name="description" content="">
 	<meta name="author" content="Ryan Tyer">
 	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<%= css :application %>
-	<%= js  :app %>
+  <%= css :application %>
+  <%= js  :app %>
 </head>
 <body>
-	<div class="container">
-
-      <div class="content">
-        <div class="page-header">
-          <h1>Trip Tracker</h1>
-        </div>
-        <div class="row">
-          <div class="span8">
-            <h2>Main content</h2>
-          </div>
-          <div class="span4">
-            <button class="btn large primary">Start</button>
-          </div>
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span8">
+    Map View
+    </div>
+    <div class="span4">
+      <div class="row-fluid">
+        <div class="span4 clockContainer">
+          Clock
+        </div><!-- / -->
+      </div>  
+      <div class="row-fluid">  
+        <div class="span4 actionsContainer">
+          Actions
         </div>
       </div>
+    </div>
+</div> <!-- /row -->
+<footer>
+  <p><small>&copy; Ryan Tyer 2012 | <a href="/spec" style="color:gray">Run Spec</a></small></p>
+</footer>
 
-      <footer>
-        <p><small>&copy; Ryan Tyer 2012 | <a href="/spec" style="color:gray">Run Spec</a></small></p>
-      </footer>
-
-    </div> <!-- /container -->
+</div> <!-- /container -->
 </body>
 </html>

@@ -30,6 +30,7 @@ class Static < Sinatra::Base
 		 '/js/app/utils.js',
 		 '/js/app/models.js',
 		 '/js/app/collections.js',
+		 '/js/app/templates.js',
 		 '/js/app/views.js',
 		 '/js/app/routers.js',
 		 '/js/tracker.js'

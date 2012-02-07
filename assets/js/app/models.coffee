@@ -6,12 +6,12 @@ class Points extends Backbone.Collection
 
 class Trip extends Backbone.Model	
 	tickFrequency: 	500		
+	started: 		false
 	defaults: 
 		duration:	0,
-		started:	false,
 		points:		new Points()
 	isStarted:() ->
-		@get "started"
+		@started
 	tick:()=>
 		@set duration:((@get "duration") + (@tickFrequency/1000))
 	addPoint:(position) =>		
@@ -20,11 +20,13 @@ class Trip extends Backbone.Model
 			time:	  new Date()
 		}))
 	start:() ->
-		@set started:true
+		@started = true
+		@trigger 'change:started'
 		@intervalId = setInterval @tick, @tickFrequency
 		@watchId = app.Util.watchPosition(@addPoint, app.Util.logWarning)		
 	stop:()->
-		@set started:false
+		@started = false
+		@trigger 'change:started'
 		clearInterval(@intervalId)	
 		app.Util.clearWatch(@watchId)	
 

@@ -1,9 +1,14 @@
 class Trip
-	include Mongoid::Document	
+	include Mongoid::Document
+	include Mongoid::Spacial::Document
+		
 	field :duration, type: Integer
-	field :start_location, type: Array
-	field :end_location, type: Array
+	field :start_location, type: Array, spacial: true
+	field :end_location, type: Array, spacial: true
 	embeds_many :points
+
+	spacial_index :start_location
+	spacial_index :end_location
 
 	validates_presence_of [:duration, :start_location, :end_location, :points]	
 
