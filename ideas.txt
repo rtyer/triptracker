@@ -1,0 +1,12 @@
+focus on the route start/end
+no map on phone while driving
+	avg speed, distance remaining, eta would be nicer
+
+focus on peer aspect
+	see times from other places similar to your start/stop at this time and show the route (with directions?????)
+	
+have nice web interface to show your routes, etc
+
+no account necessary to browse routes/times
+
+also show times via bus, etc?
