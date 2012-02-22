@@ -1,7 +1,0 @@
-new View
-
-view binds to the event 
-
-
-
-revisit the trigger of an event call for started.  does it make sense or should started just be a model attribute?
