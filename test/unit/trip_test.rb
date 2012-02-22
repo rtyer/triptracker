@@ -23,14 +23,14 @@ describe Trip do
 
 	describe "start_location" do
 		it "must not be nil" do
-			t = Factory.build(:trip, :start_location => nil)
+			t = Factory.build(:trip, :start_location => nil, :points =>[])
 			refute t.save
 		end
 	end
 
 	describe "end_location" do
 		it "must not be nil" do
-			t = Factory.build(:trip, :end_location => nil)
+			t = Factory.build(:trip, :end_location => nil, :points =>[])
 			refute t.save
 		end
 	end
