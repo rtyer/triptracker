@@ -1,28 +1,29 @@
 #views
 $(document).ready ->
-	@app = window.app ? {}
+  @app = window.app ? {}
 
-	class AppView extends Backbone.View
-    	el: '#app'
-    	initialize: (options) ->
-      		@collection.bind 'reset', @render, @
-      		@subviews = [
-        		new NewTripView(collection: @collection)
-        	]
-        		# new DateTitleView collection: @collection
-        		# new TasksView     collection: @collection
-        		# new NewTaskView   collection: @collection
-        	# ]
-    	render: ->
-      		$(@el).empty()
-      		$(@el).append subview.render().el for subview in @subviews
-      		@
+  class AppView extends Backbone.View
+    tagName: 'div'
+    el: '#app'    
+    initialize: () ->
+      @collection.bind 'reset', @render, @
+      @subviews = [
+        new NewTripView(collection: @collection)
+      ]
+          # new DateTitleView collection: @collection
+          # new TasksView     collection: @collection
+          # new NewTaskView   collection: @collection
+        # ]
+    render: ->
+      $(@el).empty()
+      $(@el).append subview.render().el for subview in @subviews
+      @
 
-    @app.AppView = AppView
+  @app.AppView = AppView
   
   class NewTripView extends Backbone.View
-    el: "#container"
-    tagName: "div"
+    tagName: 'div'
+    el: '#container'    
     initialize: ->    
       @model = new app.Trip  
       @subviews = [

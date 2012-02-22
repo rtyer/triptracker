@@ -10,7 +10,8 @@ $(document).ready ->
 			@view = new app.AppView collection: app.Trips
 		index:->
 			console.log('index')
-			new app.NewTripView(collection: app.Trips).render()
+			#new app.NewTripView(collection: app.Trips).render()
+			@view.render()
 		showNew:->
 			console.log('show new')
 		show:(id) ->
