@@ -3,11 +3,11 @@ $(document).ready ->
 	@app = window.app ? {}
 
 	class AppView extends Backbone.View
-    	el: '#container'
+    	el: '#app'
     	initialize: (options) ->
       		@collection.bind 'reset', @render, @
       		@subviews = [
-        		new RouteView(collection: @collection)
+        		new NewTripView(collection: @collection)
         	]
         		# new DateTitleView collection: @collection
         		# new TasksView     collection: @collection
@@ -19,10 +19,28 @@ $(document).ready ->
       		@
 
     @app.AppView = AppView
+  
+  class NewTripView extends Backbone.View
+    el: "#container"
+    tagName: "div"
+    initialize: ->    
+      @model = new app.Trip  
+      @subviews = [
+        new ClockView model: @model
+        new ActionsView {model: @model, collection: @collection}
+      ]
+    render: ->
+      $(@el).empty()
+      $(@el).append subview.render().el for subview in @subviews
+      @
+    sup: ->
+      console.log('change baby')
+
+  @app.NewTripView = NewTripView
 
   class ClockView extends Backbone.View
-    class: 'clock'
-    tagName: 'h3'    
+    class: "row-fluid"
+    tagName: "div"   
     initialize: ->
       @model.on 'change:duration', @render, @
     render: ->
@@ -30,14 +48,15 @@ $(document).ready ->
       @
   @app.ClockView = ClockView
 
-  class TripActions extends Backbone.View
-    class: "actions"
+  class ActionsView extends Backbone.View
+    class: "row-fluid"
     tagName: "div"    
     initialize: ->
       @model.on 'change:started', @render, @
     events:
       'click .startBtn': 'startTrip'
       'click .stopBtn': 'stopTrip'
+      'click .saveBtn': 'saveTrip'
     render: ->
       if(@model.isStarted())
         $(@el).html app.Template.tripActionsStop()
@@ -48,12 +67,19 @@ $(document).ready ->
     startTrip: () ->
       @model.start()
     stopTrip: () ->
-      @model.stop()    
-  
-  @app.TripActions = TripActions
- 
-	class TripView extends Backbone.View
-		className: 'trip'
-		render: ->			
-	    	$(@el).html app.Template.route(@model.toJSON())
-	    	@
+      @model.stop() 
+    saveTrip: () =>
+      @collection.create(@model.attributes)
+      
+  @app.ActionsView = ActionsView
+
+  class MapView extends Backbone.View
+    class: "mapView"
+    tagName: "div"
+    initialize: ->
+      @model.on 'change:points', @render, @
+    render: ->
+      console.debug("render")
+      @
+      
+  @app.MapView = MapView

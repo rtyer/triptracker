@@ -65,7 +65,15 @@ class Static < Sinatra::Base
 		erb :index, :format=>:html5
 	end
 
+	get '/test' do
+		erb :test, :format => :html5
+	end
+
 	get '/spec' do
 		erb :spec_runner, :format=>:html5
+	end
+
+	get '*' do
+		erb :index, :format=>:html5
 	end
 end
